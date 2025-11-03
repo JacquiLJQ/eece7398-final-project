@@ -2,7 +2,12 @@ RocktNet Project
 
 This repository contains the implementation of RocktNet, a deep learning-based approach for netlist extraction from analog images.
 
-The traaining dataa generation code is in the `Generation` folder, just follow the steps below to generate your own dataset: 
+
+You need to have a basic $\LaTeX$ environment to generate the training data.
+You need to have Python3 as well as several common libraries installed to extract netlists from images.
+
+
+The training data generation code is in the `Generation` folder, just follow the steps below to generate your own dataset: 
 ```bash
 cd Generation
 bash ./do.bash
@@ -16,4 +21,5 @@ cd Netlist
 # modify the model path and image path in a_ocradvanced.py
 python3 a_ocradvanced.py
 ```
+
 
