@@ -475,6 +475,35 @@ if __name__ == "__main__":
             + r"\space \xpositionratio \space \ypositionratio \space \widthratio \space \heightratio }"
         )
 
+    # === NEW: Add random text labels on schematic ===
+    text_labels = [
+        "VDD",
+        "Vout",
+        "Vin",
+        "node1",
+        "Ibias",
+        "GND",
+        "Vref",
+        "CLK",
+        "out",
+        "bias",
+    ]
+    num_labels = random.randint(3, 8)  # 控制文字数量
+
+    for _ in range(num_labels):
+        lx = random.uniform(0, grid_size)  # 随机X坐标
+        ly = random.uniform(-grid_size / 2, grid_size / 2)  # 随机Y坐标
+        label = random.choice(text_labels)
+        rot = random.choice([-20, -10, 0, 10, 20])
+        color = random.choice(["gray", "blue!40", "red!60", "black"])
+        font_size = random.choice(
+            ["\\tiny", "\\scriptsize", "\\footnotesize", "\\small"]
+        )
+        print(
+            f"\\node[{color}, rotate={rot}] at ({lx:.2f},{ly:.2f}) {{{font_size} {label}}};"
+        )
+
+
 print(
     r"""
 
