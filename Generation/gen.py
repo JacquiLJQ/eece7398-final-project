@@ -23,7 +23,7 @@ def find_compatible_nets_for_device(device_x, device_y, nets):
 
 
 def create_device(device_type, index, grid_size):
-   
+
     dx = random.randint(0, grid_size - 1)
     dy = random.randint(0, grid_size - 1)
     if device_type in ["Ground"]:
@@ -54,7 +54,9 @@ def create_device(device_type, index, grid_size):
     elif device_type == "PNP":
         nodeType = f"pnp"
     elif device_type == "Inducer":
-        nodeType = random.choice(["american inductor", "cute inductor","cute inductor","cute inductor"])
+        nodeType = random.choice(
+            ["american inductor", "cute inductor", "cute inductor", "cute inductor"]
+        )
     elif device_type == "Diode":
         nodeType = f"D"
     elif device_type == "Resistor":
@@ -301,11 +303,12 @@ if __name__ == "__main__":
             elif dev["type"] == "Capacitor":
                 # print(r"\ctikzset{capacitors/scale = " + str(xscale) + "}")
                 # print(r"\ctikzset{capacitors/width = " + str(yscale) + "}")
-                print(
-                    r"\ctikzset{capacitors/coils = "
-                    + str(random.choice([3, 4, 5, 6]))
-                    + "}"
-                )
+                # print(
+                #     r"\ctikzset{capacitors/coils = "
+                #     + str(random.choice([3, 4, 5, 6]))
+                #     + "}"
+                # )
+                pass
                 # if random.choice([0, 1]) == 0:
                 if False:
                     print(
@@ -328,16 +331,12 @@ if __name__ == "__main__":
                     # print(
                     #     f"\\draw ({p1x},{p1y}) to[{dev['nodeType']} ,l=$V_{random.choice([1,2,3,4,5,'A','B','C','a','b','c',r'{in}',r"{out}",r'{DD}'])}$ ] ({p2x},{p2y});"
                     # )
-                    print(
-                        f"\\draw ({p1x},{p1y}) to[{dev['nodeType']} ] ({p2x},{p2y});"
-                    )
+                    print(f"\\draw ({p1x},{p1y}) to[{dev['nodeType']} ] ({p2x},{p2y});")
                 elif dev["type"] == "Current":
                     # print(
                     #     f"\\draw ({p1x},{p1y}) to[{dev['nodeType']} ,l=$I_{random.choice([1,2,3,4,5,'A','B','C','a','b','c',r'{in}',r"{out}"])}$ ] ({p2x},{p2y});"
                     # )
-                    print(
-                        f"\\draw ({p1x},{p1y}) to[{dev['nodeType']} ] ({p2x},{p2y});"
-                    )
+                    print(f"\\draw ({p1x},{p1y}) to[{dev['nodeType']} ] ({p2x},{p2y});")
                 else:
                     # if random.choice([0, 1]) == 0:
                     if False:
