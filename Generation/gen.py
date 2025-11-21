@@ -345,7 +345,7 @@ if __name__ == "__main__":
                         )
                     else:
                         print(
-                            f"\\draw ({p1x},{p1y}) to[{dev["nodeType"]}] ({p2x},{p2y});"
+                            f"\\draw ({p1x},{p1y}) to[{dev['nodeType']}] ({p2x},{p2y});"
                         )
                 # \draw (0,0)  to[R] (0,2);
             print(f"\\end{{scope}}")
@@ -490,18 +490,65 @@ if __name__ == "__main__":
     ]
     num_labels = random.randint(3, 8)  # 控制文字数量
 
-    for _ in range(num_labels):
-        lx = random.uniform(0, grid_size)  # 随机X坐标
-        ly = random.uniform(-grid_size / 2, grid_size / 2)  # 随机Y坐标
+    # 记录每个文字对应的局部 bounding box用于写入 YOLO 标签
+    text_boxes = []
+
+    for t_idx in range(num_labels):
+        lx = random.uniform(0, grid_size)  # 随机 X 坐标
+        ly = random.uniform(-grid_size / 2, grid_size / 2)  # 随机 Y 坐标
         label = random.choice(text_labels)
         rot = random.choice([-20, -10, 0, 10, 20])
         color = random.choice(["gray", "blue!40", "red!60", "black"])
         font_size = random.choice(
             ["\\tiny", "\\scriptsize", "\\footnotesize", "\\small"]
         )
+
+        # 为这个文字生成一个局部 bounding box 名字，例如 TXT0, TXT1...
+        box_name = f"TXT{t_idx}"
+        text_boxes.append(box_name)
+
+        # local bounding box=<box_name> 让 TikZ 为这个文字记录一个 bbox
         print(
-            f"\\node[{color}, rotate={rot}] at ({lx:.2f},{ly:.2f}) {{{font_size} {label}}};"
+            f"\\node[{color}, rotate={rot}, local bounding box={box_name}] "
+            f"at ({lx:.2f},{ly:.2f}) {{{font_size} {label}}};"
         )
+
+    TEXT_CLASS_ID = "11"  # 新增11号类别text
+
+    for box_name in text_boxes:
+        # 这里给文字添加坐标的方式和器件是一样的
+        print(
+            f"\\path ({box_name}.south west);"
+            + r" \pgfgetlastxy{\rOneMinX}{\rOneMinY}"
+        )
+        print(
+            f"\\path ({box_name}.north east);"
+            + r" \pgfgetlastxy{\rOneMaxX}{\rOneMaxY}"
+        )
+
+        print(
+            r"""
+   \pgfpointanchor{current bounding box}{north west} \pgfgetlastxy{\pgNWx}{\pgNWy}
+   \newdimen\canvaswidth
+   \newdimen\canvasheight
+   \path (current bounding box.south west); \pgfgetlastxy{\canvasminx}{\canvasminy}
+   \path (current bounding box.north east); \pgfgetlastxy{\canvasmaxx}{\canvasmaxy}
+   \pgfmathsetlength{\canvaswidth}{\canvasmaxx-\canvasminx}
+   \pgfmathsetlength{\canvasheight}{\canvasmaxy-\canvasminy}
+   \pgfmathsetmacro{\widthratio}{(\rOneMaxX-\rOneMinX)/(\canvaswidth)}
+   \pgfmathsetmacro{\heightratio}{(\rOneMaxY-\rOneMinY)/(\canvasheight)}
+   \pgfmathsetmacro{\xpositionratio}{(\rOneMinX+\rOneMaxX-\canvasminx-\canvasminx)/2/(\canvaswidth)}
+   \pgfmathsetmacro{\ypositionratio}{1-(\rOneMinY+\rOneMaxY-\canvasminy-\canvasminy)/2/(\canvasheight)}
+"""
+        )
+
+        # 3. 写一行 YOLO 标签： 11 x y w h
+        print(
+            r" \immediate\write\posfile{"
+            + TEXT_CLASS_ID
+            + r"\space \xpositionratio \space \ypositionratio \space \widthratio \space \heightratio }"
+        )
+
 
 
 print(
