@@ -345,7 +345,7 @@ if __name__ == "__main__":
                         )
                     else:
                         print(
-                            f"\\draw ({p1x},{p1y}) to[{dev["nodeType"]}] ({p2x},{p2y});"
+                            f"\\draw ({p1x},{p1y}) to[{dev['nodeType']}] ({p2x},{p2y});"
                         )
                 # \draw (0,0)  to[R] (0,2);
             print(f"\\end{{scope}}")

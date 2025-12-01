@@ -96,7 +96,7 @@ val_task() {
 }
 
 num_threads=3
-for i in $(seq 1 100); do
+for i in $(seq 1 1000); do
     val_task "$i" &
     while [ "$(jobs -r | wc -l)" -ge "$num_threads" ]; do sleep 1; done
 done
@@ -121,7 +121,7 @@ train_task() {
 }
 
 num_threads=3
-for i in $(seq 1 100); do
+for i in $(seq 1 5000); do
     train_task "$i" &
     while [ "$(jobs -r | wc -l)" -ge "$num_threads" ]; do sleep 1; done
 done
