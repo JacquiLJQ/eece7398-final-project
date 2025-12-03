@@ -1,0 +1,23 @@
+100 epochs completed in 0.108 hours.
+Optimizer stripped from /home/wang.jingch/rocktnet/Generation/dataset/runs/detect/train6/weights/last.pt, 5.5MB
+Optimizer stripped from /home/wang.jingch/rocktnet/Generation/dataset/runs/detect/train6/weights/best.pt, 5.5MB
+
+Validating /home/wang.jingch/rocktnet/Generation/dataset/runs/detect/train6/weights/best.pt...
+Ultralytics 8.3.234 🚀 Python-3.10.19 torch-2.0.1+cu118 CUDA:0 (Tesla P100-PCIE-12GB, 12194MiB)
+YOLO11n summary (fused): 100 layers, 2,584,492 parameters, 0 gradients, 6.3 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 1.4it/s 2.9s
+                   all        100        621      0.342      0.384      0.305      0.153
+                  PMOS         59         95      0.389      0.516      0.341      0.176
+                  NMOS         55         81       0.33       0.58      0.389      0.215
+                   NPN         37         45      0.241      0.422      0.224        0.1
+                   PNP         39         49      0.277      0.327      0.276      0.158
+               Inducer         42         57      0.308      0.297      0.224       0.11
+                 Diode         39         47      0.398      0.617      0.469      0.254
+              Resistor         49         60       0.27      0.183      0.185     0.0783
+             Capacitor         54         66      0.265      0.394      0.324      0.157
+                Ground         38         54      0.362      0.204      0.198      0.077
+               Voltage         31         37      0.416      0.351      0.381       0.21
+               Current         28         30      0.506      0.333       0.34       0.15
+Speed: 2.2ms preprocess, 4.5ms inference, 0.0ms loss, 8.1ms postprocess per image
+Results saved to /home/wang.jingch/rocktnet/Generation/dataset/runs/detect/train6
+💡 Learn more at https://docs.ultralytics.com/modes/train
