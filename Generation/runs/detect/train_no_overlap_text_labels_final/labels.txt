@@ -1,0 +1,15 @@
+all       5000      58646      0.916      0.877      0.943      0.764
+                  PMOS       3003       4721      0.953      0.952      0.986      0.829
+                  NMOS       2911       4612      0.951      0.946      0.983      0.822
+                   NPN       2103       2618      0.941      0.931      0.978      0.796
+                   PNP       2057       2607      0.943      0.932      0.979      0.797
+               Inducer       2101       2683        0.9      0.728      0.866      0.611
+                 Diode       2130       2662      0.937      0.947      0.984      0.808
+              Resistor       2139       2701      0.916       0.86      0.941      0.711
+             Capacitor       2023       2558      0.804      0.857      0.907      0.745
+                Ground       2059       2612      0.914      0.699      0.845      0.567
+               Voltage       1560       1746      0.951      0.967       0.99      0.832
+               Current       1565       1754      0.791      0.713      0.856       0.69
+            Text_Label       5000      27372      0.997      0.996      0.995      0.962
+Speed: 0.5ms preprocess, 2.1ms inference, 0.0ms loss, 2.2ms postprocess per image
+Results saved to /home/wang.jingch/rocktnet/Generation/dataset/runs/detect/train11
