@@ -22,4 +22,11 @@ cd Netlist
 python3 a_ocradvanced.py
 ```
 
+To evaluate your YOLO mode, run evaluatationn.py to get specific GED and accuracy metrics:
+    """
+    
+    Usage:
+        python evaluation.py --mode full  --model rocktnet/Generation/dataset/best.pt --dataset dataset/val
+    """
+
 
