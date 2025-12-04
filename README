@@ -22,7 +22,7 @@ cd Netlist
 python3 a_ocradvanced.py
 ```
 
-To evaluate your YOLO mode, run evaluatationn.py to get specific GED and accuracy metrics:
+To evaluate your YOLO model, run evaluatationn.py to get specific GED and accuracy metrics:
     """
     
     Usage:
